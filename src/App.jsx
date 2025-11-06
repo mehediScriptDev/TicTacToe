@@ -14,13 +14,11 @@ function Squre({ value, onSquareClick }) {
 
 function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
-  let status;
-
-  if (winner) {
-    status = `Winner: ${winner}`;
-  } else {
-    status = `Next player: ${xIsNext ? "X" : "O"}`;
-  }
+  const status = winner
+    ? `Winner: ${winner}`
+    : squares.every((s) => s !== null)
+    ? "No winner — it's a draw"
+    : `Next player: ${xIsNext ? "X" : "O"}`;
 
   function handleClick(i) {
     const nextSquares = squares.slice();
